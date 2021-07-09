@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Numbers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="status">
+    <div class="score">Score:{{score}}</div>
+    <div class="score">Guess:{{guess}}</div>
+  </div>
+  <div class="boxes">
+    <div class="box" *ngFor="let box of boxes; let i = index" (click)="showBox(i)">
+      <div class="inner" *ngIf="box['visible']" id="{{box['id']}}">{{box['label']}}</div>
+    </div>
+  </div>
+</body>
+</html>

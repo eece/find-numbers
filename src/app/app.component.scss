@@ -1,0 +1,39 @@
+body {
+  font-family: 'Shadows Into Light', cursive;
+}
+.status {
+  text-align: center;
+  border-bottom:4px solid #000;
+  padding:0 60px;
+  margin:0 auto;
+  margin-bottom: 15px;
+  display: table;
+  & > div {
+    display: inline-block;
+    margin:15px;
+    font-size: 48px;
+    line-height: 52px;
+  }
+}
+.boxes {
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  width:480px;
+  border:2px solid #000;
+  max-width:100%;
+  .box {
+    border:2px solid #000;
+    box-sizing: border-box;
+    height: 120px;
+    width:120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 25%;
+    .inner {
+      font-size: 48px;
+      line-height: 52px;
+    }
+  }
+}
