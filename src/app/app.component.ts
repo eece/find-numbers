@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'Find Numbers';
-  public boxes:Array<object> = new Array();
-  public openedBoxes:Array<object> = new Array();
+  public boxes:Array<Box> = new Array();
+  public openedBoxes:Array<Box> = new Array();
   public score:number = 0;
   public guess:number = 0;
   ngOnInit() {
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   public showBox(index:number) {
-    if(!this.boxes[index]['visible']) {
+    if(!this.boxes[index].visible) {
       this.guess++;
       if(this.openedBoxes.length < 2) {
         this.addToOpened(index);
@@ -33,23 +33,23 @@ export class AppComponent implements OnInit {
     }
   }
   public closeOpenedNonFoundBoxes() {
-    this.boxes.filter(item => item['visible'] == true && item['found'] == false).forEach(item => {
-      item['visible'] = false;
+    this.boxes.filter(item => item.visible == true && item.found == false).forEach(item => {
+      item.visible = false;
     })
     this.openedBoxes= [];
   }
 
   public checkOpenedBoxes() {
-    if(this.openedBoxes[0]['label'] == this.openedBoxes[1]['label'] ) { // Found Items
-      this.boxes.filter(item => item['label'] == this.openedBoxes[0]['label']).forEach(item => { // Make found items
-        item['found'] = true;
+    if(this.openedBoxes[0].label == this.openedBoxes[1].label ) { // Found Items
+      this.boxes.filter(item => item.label == this.openedBoxes[0].label).forEach(item => { // Make found items
+        item.found = true;
       })
       this.score++;
     }
   }
 
   public addToOpened(index){
-    this.boxes[index]['visible'] = true;
+    this.boxes[index].visible= true;
     this.openedBoxes.push(this.boxes[index]);
   }
 
