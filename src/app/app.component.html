@@ -9,14 +9,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="status">
-    <div class="score">Score:{{score}}</div>
-    <div class="score">Guess:{{guess}}</div>
-  </div>
-  <div class="boxes">
-    <div class="box" *ngFor="let box of boxes; let i = index" (click)="showBox(i)">
-      <div class="inner" *ngIf="box['visible']" id="{{box['id']}}">{{box['label']}}</div>
+  <div class="puzzle" *ngIf="!this.finished">
+    <div class="status">
+      <div class="score">Score:{{score}}</div>
+      <div class="score">Guess:{{guess}}</div>
     </div>
+    <div class="boxes">
+      <div class="box" *ngFor="let box of boxes; let i = index" (click)="showBox(i)">
+        <div class="inner" *ngIf="box['visible']" id="{{box['id']}}">{{box['label']}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="result" *ngIf="this.finished">
+    <h1>Congratulations!</h1>
+    <h2>You found all numbers with {{guess}} guesses.</h2>
+  </div>
+  <div class="controls">
+    <button (click)="restartPuzzle()">Restart Game</button>
   </div>
 </body>
 </html>

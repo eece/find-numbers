@@ -37,3 +37,13 @@ body {
     }
   }
 }
+button {
+  background: transparent;
+  border: 3px solid #eee;
+  padding: 15px 30px;
+  margin: 15px auto;
+  display: table;
+}
+.result {
+  text-align: center;
+}

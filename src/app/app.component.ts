@@ -11,10 +11,9 @@ export class AppComponent implements OnInit {
   public openedBoxes:Array<Box> = new Array();
   public score:number = 0;
   public guess:number = 0;
+  public finished:boolean;
   ngOnInit() {
-    this.generateBoxes('');
-    this.generateBoxes('-2');
-    this.boxes = this.Shuffle(this.boxes);
+   this.loadPuzzle();
   }
 
   public showBox(index:number) {
@@ -26,7 +25,6 @@ export class AppComponent implements OnInit {
           this.checkOpenedBoxes();
         }
       } else { // 2 opened items
-        console.log(this.openedBoxes);
         this.closeOpenedNonFoundBoxes();
         this.addToOpened(index);
       }
@@ -45,6 +43,9 @@ export class AppComponent implements OnInit {
         item.found = true;
       })
       this.score++;
+      if(this.score == this.boxes.length / 2) {
+        this.finished = true;
+      }
     }
   }
 
@@ -66,5 +67,16 @@ export class AppComponent implements OnInit {
     for (let i = 1; i < 9; i++) {
       this.boxes.push({id:i+id, label:i.toString(), visible:false, found:false});
     }
+  }
+
+  public loadPuzzle() {
+    this.boxes = [];
+    this.generateBoxes('');
+    this.generateBoxes('-2');
+    this.boxes = this.Shuffle(this.boxes);
+  }
+
+  public restartPuzzle() {
+    this.loadPuzzle();
   }
 }
