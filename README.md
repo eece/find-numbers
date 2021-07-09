@@ -2,6 +2,10 @@
 
 Find Numbers is a puzzle game. The player tries to find numbers that match fewer guesses.
 
+## Installation
+
+You need to run "npm install" to install node packages. Now it is ready to run!
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
