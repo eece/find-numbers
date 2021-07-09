@@ -15,3 +15,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 - Create an interesting score system
 - Add login and ranking system
 - Create different game modes as country flags, pokemons, vegatables and fruits instead of boring numbers.
+
+## Game Play
+![alt text](find-numbers.gif)
