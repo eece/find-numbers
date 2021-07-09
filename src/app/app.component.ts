@@ -70,13 +70,15 @@ export class AppComponent implements OnInit {
   }
 
   public loadPuzzle() {
-    this.boxes = [];
     this.generateBoxes('');
     this.generateBoxes('-2');
     this.boxes = this.Shuffle(this.boxes);
   }
 
   public restartPuzzle() {
+    this.boxes = [];
+    this.guess = 0;
+    this.score = 0;
     this.loadPuzzle();
   }
 }
