@@ -11,6 +11,10 @@
 <body>
   <div class="puzzle" *ngIf="!this.finished">
     <div class="status">
+      <h1>Level:<select (change)="levelChangeHandler()" [(ngModel)]="level">
+        <option [value]="index" *ngFor="let index of [1,2,3,4]">{{index}}</option>
+      </select></h1>
+
       <div class="score">Score:{{score}}</div>
       <div class="score">Guess:{{guess}}</div>
     </div>
@@ -22,7 +26,7 @@
   </div>
   <div class="result" *ngIf="this.finished">
     <h1>Congratulations!</h1>
-    <h2>You found all numbers with {{guess}} guesses.</h2>
+    <h2>You found all numbers with {{guess}} guesses in level {{level}}.</h2>
   </div>
   <div class="controls">
     <button (click)="restartPuzzle()">Restart Game</button>

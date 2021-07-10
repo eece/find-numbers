@@ -12,11 +12,12 @@ export class AppComponent implements OnInit {
   public score:number = 0;
   public guess:number = 0;
   public finished:boolean;
+  public level:number = 4;
   ngOnInit() {
    this.loadPuzzle();
   }
 
-  public showBox(index:number) {
+  public showBox(index:number):void {
     if(!this.boxes[index].visible) {
       this.guess++;
       if(this.openedBoxes.length < 2) {
@@ -30,14 +31,14 @@ export class AppComponent implements OnInit {
       }
     }
   }
-  public closeOpenedNonFoundBoxes() {
+  public closeOpenedNonFoundBoxes():void {
     this.boxes.filter(item => item.visible == true && item.found == false).forEach(item => {
       item.visible = false;
     })
     this.openedBoxes= [];
   }
 
-  public checkOpenedBoxes() {
+  public checkOpenedBoxes():void {
     if(this.openedBoxes[0].label == this.openedBoxes[1].label ) { // Found Items
       this.boxes.filter(item => item.label == this.openedBoxes[0].label).forEach(item => { // Make found items
         item.found = true;
@@ -49,7 +50,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public addToOpened(index){
+  public addToOpened(index):void{
     this.boxes[index].visible= true;
     this.openedBoxes.push(this.boxes[index]);
   }
@@ -63,22 +64,28 @@ export class AppComponent implements OnInit {
     return d;
   }
 
-  public generateBoxes(id) {
-    for (let i = 1; i < 9; i++) {
+  public generateBoxes(id,level:number):void {
+    for (let i = 1; i < (level*2)+1; i++) {
       this.boxes.push({id:i+id, label:i.toString(), visible:false, found:false});
     }
   }
 
-  public loadPuzzle() {
-    this.generateBoxes('');
-    this.generateBoxes('-2');
+  public loadPuzzle():void {
+    this.generateBoxes('',Number(this.level));
+    this.generateBoxes('-2',Number(this.level));
     this.boxes = this.Shuffle(this.boxes);
   }
 
-  public restartPuzzle() {
+  public restartPuzzle():void {
     this.boxes = [];
     this.guess = 0;
     this.score = 0;
+    this.finished = false;
     this.loadPuzzle();
   }
+
+  public levelChangeHandler():void {
+    this.restartPuzzle();
+  }
+
 }
